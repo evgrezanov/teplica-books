@@ -25,9 +25,12 @@ class BOOKS {
     }
 
     public static function assets(){
+        $data = get_plugin_data(__FILE__);
         wp_enqueue_style(
             'bootstrap', 
-            plugins_url('Books/asset/bootstrap.min.css')
+            plugins_url('Books/asset/bootstrap.min.css'),
+            array(),
+            $data['Version']
         );
     }
 
