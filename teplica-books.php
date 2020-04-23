@@ -3,7 +3,7 @@
  * Plugin Name:       teplica-books
  * Plugin URI:        https://www.upwork.com/freelancers/~01ea58721977099d53
  * Description:       Тестовое задание Теплица.
- * Version:           1.0
+ * Version:           1.1
  * Author:            Evgeniy Rezanov
  * Author URI:        https://www.upwork.com/freelancers/~01ea58721977099d53
  * License:           GPL v2 or later
@@ -23,17 +23,25 @@ class BOOKS {
         add_action('wp_enqueue_scripts', [__CLASS__, 'assets']);
         register_activation_hook( __FILE__, [__CLASS__, 'my_rewrite_flush'] );
     }
-
+    /**
+     * add butstrap styles
+     *
+     * @return void
+     */
     public static function assets(){
         $data = get_plugin_data(__FILE__);
         wp_enqueue_style(
             'bootstrap', 
-            plugins_url('Books/asset/bootstrap.min.css'),
+            plugin_dir_url(__FILE__).'/asset/bootstrap.min.css',
             array(),
             $data['Version']
         );
     }
-
+    /**
+     * rewrite permalink after plugin activated
+     *
+     * @return void
+     */
     public static function my_rewrite_flush() {
         BOOKS_CPT::register_post_types();
         flush_rewrite_rules();

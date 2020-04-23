@@ -9,6 +9,11 @@ class BOOKS_CPT {
         add_action( 'save_post_books', [__CLASS__, 'save_books_meta'] );
     }    
 
+    /**
+     * register book post type
+     *
+     * @return void
+     */
     public static function register_post_types(){
 	    register_post_type( 'books', [
 		    'label'  => null,
@@ -40,6 +45,11 @@ class BOOKS_CPT {
 	    ] );
     }
 
+    /**
+    * add metabox for books
+    *
+    * @return void
+    */
     public static function add_books_metaboxes(){
         $screens = array('books');
         add_meta_box(
@@ -53,7 +63,13 @@ class BOOKS_CPT {
         );
     }
 
-
+    /**
+    * display book meta fields
+    *
+    * @param string $post
+    * @param array $meta
+    * @return void
+    */
     public static function display_books_fields($post, $meta) {
 	    //global $post;
 	    wp_nonce_field( basename( __FILE__ ), 'book_fields' );
@@ -65,7 +81,12 @@ class BOOKS_CPT {
         echo '<label>Название издательстваата</label><input type="text" name="publisher" value="' . esc_textarea( $publisher )  . '" class="widefat">';
     }    
 
-
+    /**
+    * save book meta fields
+    *
+    * @param string $post_id
+    * @return void
+    */
     public static function save_books_meta( $post_id ) {
         
         if ( wp_is_post_revision( $post_id ) ){
