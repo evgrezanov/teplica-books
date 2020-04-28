@@ -33,7 +33,7 @@ class BOOKS {
             'bootstrap', 
             plugin_dir_url(__FILE__).'/asset/bootstrap.min.css',
             array(),
-            getdate()
+            time()
         );
     }
     /**
