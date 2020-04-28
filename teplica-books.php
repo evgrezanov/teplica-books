@@ -29,12 +29,11 @@ class BOOKS {
      * @return void
      */
     public static function assets(){
-        $data = get_plugin_data(__FILE__);
         wp_enqueue_style(
             'bootstrap', 
             plugin_dir_url(__FILE__).'/asset/bootstrap.min.css',
             array(),
-            $data['Version']
+            getdate()
         );
     }
     /**
